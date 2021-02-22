@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Knit Sensor Live View</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="scripts/buttonClick.js"></script>
+  </head>
+  <body>
+
+    <div class="jumbotron text-center">
+      <h1>CPS healthcare project</h1>
+      <p>3D knitted sensors</p> 
+    </div>
+    
+    <div class="kneeBraceConnect">
+      <div>
+        <p>Connect to knee brace via bluetooth to read sensor data in realtime</p>
+        <!-- <input id="service" type="text" list="services" autofocus placeholder="Bluetooth Service">
+        <input id="characteristic" type="text" list="characteristics" placeholder="Bluetooth Characteristic"> -->
+        <button type="button" class="btn btn-primary" id=startNotifications>Connect Knee Brace</button>
+        <button type="button" class="btn btn-outline-danger" id="stopNotifications">Disconnect</button>
+
+        
+        <script>
+          document.querySelector('#startNotifications').addEventListener('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            onStartButtonClick();
+          });
+          document.querySelector('#stopNotifications').addEventListener('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            onStopButtonClick();
+          });
+        </script>
+      </div>
+
+      <div class="wrapper">
+        <div id="chart"></div>
+        <script>
+          function getData() {
+              return Math.random();
+          }
+
+          Plotly.plot('chart', [{
+            y: [0],
+            type: 'line'
+          }, {
+            y: [0],
+            type: 'line'
+          }, {
+            y: [0],
+            type: 'line'
+          }]);
+
+
+          var cnt = 0;
+          setInterval(function(){
+            if (notif){
+              Plotly.extendTraces('chart',{y: [[a[0]], [a[1]],[a[2]]]}, [0, 1, 2]);
+              cnt++;
+              if(cnt > 100) {
+                  Plotly.relayout('chart',{
+                      xaxis: {
+                          range: [cnt-100,cnt]
+                      }
+                  });
+              }
+            }
+          },(1/63));
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
