@@ -1,7 +1,11 @@
 var myCharacteristic;
 // var cnt = 0;
 var chartRange = 50;
-var a = []
+var a = [];
+var rone = 47;
+var vout = 0;
+var rtwo = 0;
+
 var notif = false;
 
 async function onStartButtonClick() {
@@ -63,7 +67,9 @@ function handleNotifications(event) {
   // In the "real" world, you'd use data.getUint8, data.getUint16 or even
   // TextDecoder to process raw data bytes.
   for (let i = 0; i < value.byteLength; i+=2) {
-    a.push(parseInt('0x'+ value.getUint16(i).toString(16))/1000);
+    vout = parseInt('0x'+ value.getUint16(i).toString(16))/1000;
+    rtwo = (vout * rone)/(3.3 - vout);
+    a.push(rtwo);
   }
 
   // console.log('> ' + a.join(' '));
