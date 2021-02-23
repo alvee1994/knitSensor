@@ -1,8 +1,27 @@
-div.kneeBraceConnect {
+.element {
   margin: auto;
   width: 80%;
   border: 0.8px solid #ddf0f0;
   padding: 10px;
+}
+
+.pageContainer {
+  display: grid;
+  row-gap: 20px;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
+video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
 }
 
 

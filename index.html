@@ -15,67 +15,87 @@
       <h1>CPS healthcare project</h1>
       <p>3D knitted sensors</p> 
     </div>
-    
-    <div class="kneeBraceConnect">
-      <div>
-        <p>Connect to knee brace via bluetooth to read sensor data in realtime</p>
-        <!-- <input id="service" type="text" list="services" autofocus placeholder="Bluetooth Service">
-        <input id="characteristic" type="text" list="characteristics" placeholder="Bluetooth Characteristic"> -->
-        <button type="button" class="btn btn-primary" id=startNotifications>Connect Knee Brace</button>
-        <button type="button" class="btn btn-outline-danger" id="stopNotifications">Disconnect</button>
 
-        
-        <script>
-          document.querySelector('#startNotifications').addEventListener('click', function(event) {
-            event.stopPropagation();
-            event.preventDefault();
-            onStartButtonClick();
-          });
-          document.querySelector('#stopNotifications').addEventListener('click', function(event) {
-            event.stopPropagation();
-            event.preventDefault();
-            onStopButtonClick();
-          });
-        </script>
+    <div class="pageContainer">
+      
+      <div class="element">
+        <video width="80%" height="80%" controls loop>
+          <source src="videos/cncmachine.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
 
-      <div class="wrapper">
-        <div id="chart"></div>
-        <script>
-          function getData() {
-              return Math.random();
-          }
-
-          Plotly.plot('chart', [{
-            y: [0],
-            type: 'line',
-            name: 'Middle'
-          }, {
-            y: [0],
-            type: 'line',
-            name: 'Lateral'
-          }, {
-            y: [0],
-            type: 'line',
-            name: 'Medial'
-          }]);
-
-
-          var cnt = 0;
-          setInterval(function(){
-            if (notif){
-              Plotly.extendTraces('chart',{y: [[sensor[0]], [sensor[1]],[sensor[2]]]}, [0, 1, 2]);
-              cnt++;
-              if(cnt > 100) {
-                  Plotly.relayout('chart',{
-                      xaxis: {
-                          range: [cnt-100,cnt]
-                      }
-                  });
-              }
+      <div class="element">
+        <img src="images/nrf_present.jpeg">
+      </div>
+      
+      <div class="element">
+        <div>
+          <p>Connect to knee brace via bluetooth to read sensor data in realtime</p>
+          <!-- <input id="service" type="text" list="services" autofocus placeholder="Bluetooth Service">
+          <input id="characteristic" type="text" list="characteristics" placeholder="Bluetooth Characteristic"> -->
+          <button type="button" class="btn btn-primary" id=startNotifications>Connect Knee Brace</button>
+          <button type="button" class="btn btn-outline-danger" id="stopNotifications">Disconnect</button>
+  
+          
+          <script>
+            document.querySelector('#startNotifications').addEventListener('click', function(event) {
+              event.stopPropagation();
+              event.preventDefault();
+              onStartButtonClick();
+            });
+            document.querySelector('#stopNotifications').addEventListener('click', function(event) {
+              event.stopPropagation();
+              event.preventDefault();
+              onStopButtonClick();
+            });
+          </script>
+        </div>
+  
+        <div class="wrapper">
+          <div id="chart"></div>
+          <script>
+            function getData() {
+                return Math.random();
             }
-          },(1/63));
-        </script>
+  
+            Plotly.plot('chart', [{
+              y: [0],
+              type: 'line',
+              name: 'Middle'
+            }, {
+              y: [0],
+              type: 'line',
+              name: 'Lateral'
+            }, {
+              y: [0],
+              type: 'line',
+              name: 'Medial'
+            }]);
+  
+  
+            var cnt = 0;
+            setInterval(function(){
+              if (notif){
+                Plotly.extendTraces('chart',{y: [[sensor[0]], [sensor[1]],[sensor[2]]]}, [0, 1, 2]);
+                cnt++;
+                if(cnt > 100) {
+                    Plotly.relayout('chart',{
+                        xaxis: {
+                            range: [cnt-100,cnt]
+                        }
+                    });
+                }
+              }
+            },(1/63));
+          </script>
+        </div>
+      </div>
+      <div class="element">
+        <video width="80%" height="80%" controls loop>
+          <source src="videos/walkingvideo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </body>
