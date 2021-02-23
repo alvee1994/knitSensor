@@ -1,10 +1,14 @@
 var myCharacteristic;
-// var cnt = 0;
-var chartRange = 50;
+
 var a = [];
+var sensor = [];
+
 var rone = 47;
 var vout = 0;
 var rtwo = 0;
+
+var vnot = [0, 0, 0];
+var count = 0;
 
 var notif = false;
 
@@ -60,38 +64,24 @@ async function onStopButtonClick() {
   }
 }
 
+
 function handleNotifications(event) {
   let value = event.target.value;
   a = []
-  // Convert raw data bytes to hex values just for the sake of showing something.
-  // In the "real" world, you'd use data.getUint8, data.getUint16 or even
-  // TextDecoder to process raw data bytes.
+  sensor = []
+
   for (let i = 0; i < value.byteLength; i+=2) {
     vout = parseInt('0x'+ value.getUint16(i).toString(16))/1000;
     rtwo = (vout * rone)/(3.3 - vout);
     a.push(rtwo);
   }
 
-  // console.log('> ' + a.join(' '));
+  for (let j = 0; j < 3; j++){
+    if(count < 10){
+      vnot[j] = vnot[j] + a[j]
+    } else {
+      sensor.push(a[j]/(vnot[j]/10))
+    }
+  }
+  count++
 }
-
-  // Plotly.extendTraces('chart',{y: [[a[0]], [a[1]],[a[2]]]}, [0, 1, 2]);
-  // cnt++;
-  // console.log(cnt)
-  // if(cnt > 10) {
-  //     Plotly.relayout('chart',{
-  //         xaxis: {
-  //             range: [cnt-10,cnt]
-  //         }
-  //     });
-  // }
-
-  // Plotly.extendTraces('chart',{y: [[getData()], [getData()], [getData()]]}, [0, 1, 2]);
-  // cnt++;
-  // if(cnt > 50) {
-  //     Plotly.relayout('chart',{
-  //         xaxis: {
-  //             range: [cnt-50,cnt]
-  //         }
-  //     });
-  // }
