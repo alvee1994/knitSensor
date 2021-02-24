@@ -5,9 +5,20 @@
   padding: 10px;
 }
 
+.wrapper {
+  margin: auto;
+  height:650px;
+}
+
+.chart {
+  display: block;
+  margin: auto;
+  width: 95%;
+}
+
 .pageContainer {
   display: grid;
-  row-gap: 20px;
+  row-gap: 40px;
 }
 
 img {

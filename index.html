@@ -53,42 +53,63 @@
         </div>
   
         <div class="wrapper">
-          <div id="chart"></div>
-          <script>
-            function getData() {
-                return Math.random();
-            }
-  
-            Plotly.plot('chart', [{
-              y: [0],
-              type: 'line',
-              name: 'Middle'
-            }, {
-              y: [0],
-              type: 'line',
-              name: 'Lateral'
-            }, {
-              y: [0],
-              type: 'line',
-              name: 'Medial'
-            }]);
-  
-  
-            var cnt = 0;
-            setInterval(function(){
-              if (notif){
-                Plotly.extendTraces('chart',{y: [[sensor[0]], [sensor[1]],[sensor[2]]]}, [0, 1, 2]);
-                cnt++;
-                if(cnt > 100) {
-                    Plotly.relayout('chart',{
-                        xaxis: {
-                            range: [cnt-100,cnt]
-                        }
-                    });
-                }
+          <div id="chart">
+            <script>
+              function getData() {
+                  return Math.random();
               }
-            },(1/63));
-          </script>
+    
+              Plotly.plot('chart', [{
+                y: [0],
+                type: 'line',
+                name: 'Horizontal',
+                marker: {
+                  color: 'rgb(204, 102, 0)',
+                  size: 8,
+                  // line: {
+                  //   color: 'white',
+                  //   width: 0.5
+                  // }
+                }
+              }, {
+                y: [0],
+                type: 'line',
+                name: 'Lateral',
+                marker: {
+                  color: 'rgb(0,0,255)',
+                  size: 8
+                }
+              }, {
+                y: [0],
+                type: 'line',
+                name: 'Medial',
+                marker: {
+                  color: 'rgb(255,51,255)',
+                  size: 8
+                }
+              }]);
+    
+    
+              var cnt = 0;
+              setInterval(function(){
+                if (notif){
+                  Plotly.extendTraces('chart',{y: [[sensor[0]], [sensor[1]],[sensor[2]]]}, [0, 1, 2]);
+                  // Plotly.extendTraces('chart',{y: [[getData()], [getData()],[getData()]]}, [0, 1, 2]);
+                  cnt++;
+                  if(cnt > 100) {
+                      Plotly.relayout('chart',{
+                          xaxis: {
+                              range: [cnt-100,cnt]
+                          },
+                          // yaxis: {
+                          //   range: [190,0]
+                          // }
+                      });
+                  }
+                }
+              },(1/63));
+            </script>
+          </div>
         </div>
       </div>
       <div class="element">
