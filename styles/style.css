@@ -19,6 +19,7 @@
 .pageContainer {
   display: grid;
   row-gap: 40px;
+  margin: 25px
 }
 
 img {

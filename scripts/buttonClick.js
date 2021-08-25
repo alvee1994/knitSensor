@@ -3,7 +3,7 @@ var myCharacteristic;
 var a = [];
 var sensor = [];
 
-var rone = 47;
+var rone = 25;
 var vout = 0;
 var rtwo = 0;
 
